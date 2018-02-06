@@ -3,14 +3,14 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Authorization;
 using ZCTLoginServer.Models;
 using ZCTLoginServer.Services;
 
-// For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-
 namespace ZCTLoginServer.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("api/accounts")]
+    [Authorize]
     public class AccountController : Controller
     {
         // GET: api/values
@@ -24,11 +24,18 @@ namespace ZCTLoginServer.Controllers
         }
         // POST api/values
         [HttpPost]
+        [Produces(typeof(LFAccount))]
         public async Task Post([FromBody]LFAccount account)
         {
-
             var mongoService = new MongoDbService("LF", "LFAccounts", "mongodb://localhost");
             await mongoService.InsertAccount(account);
+        }
+
+        // POST api/values
+        [HttpPost]
+        [Produces(typeof(LFAccount))]
+        public ICActionResult Post(){
+            
         }
     }
 }
