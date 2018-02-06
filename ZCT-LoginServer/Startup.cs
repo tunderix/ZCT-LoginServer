@@ -36,7 +36,16 @@ namespace ZCT_LoginServer
                     Description = "This API offers login information for LittleFishers.",
                     TermsOfService = "None"
                 });
+
+                c.AddSecurityDefinition("Bearer", new ApiKeyScheme() { 
+                    In = "header", 
+                    Description = "Please insert JWT with Bearer into field", 
+                    Name = "Authorization", 
+                    Type = "apiKey" 
+                });
+
             });
+                
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

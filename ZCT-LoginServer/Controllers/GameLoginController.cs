@@ -8,7 +8,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace ZCTLoginServer.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("api/login")]
     public class GameLoginController : Controller
     {
         // GET api/values
